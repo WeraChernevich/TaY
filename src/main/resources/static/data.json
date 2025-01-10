@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "designation": "UI Developer",
+    "image": "https://i.pinimg.com/736x/29/4c/d9/294cd9e15f0d1c0711bc6526e8c44dc8--face-profile-face-reference.jpg",
+    "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem dicta porro aliquam suscipit nisi aperiam error temporibus id quia. Modi, ad amet. Quas neque molestias architecto debitis in. Ad.",
+    "views": 100,
+    "likes": 50
+  },
+  {
+    "id": 2,
+    "name": "John Doe",
+    "designation": "UI Developer",
+    "image": "https://i.pinimg.com/736x/29/4c/d9/294cd9e15f0d1c0711bc6526e8c44dc8--face-profile-face-reference.jpg",
+    "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem dicta porro aliquam suscipit nisi aperiam error temporibus id quia. Modi, ad amet. Quas neque molestias architecto debitis in. Ad.",
+    "views": 100,
+    "likes": 50
+  },
+  {
+    "id": 3,
+    "name": "John Doe",
+    "designation": "UI Developer",
+    "image": "https://i.pinimg.com/736x/29/4c/d9/294cd9e15f0d1c0711bc6526e8c44dc8--face-profile-face-reference.jpg",
+    "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem dicta porro aliquam suscipit nisi aperiam error temporibus id quia. Modi, ad amet. Quas neque molestias architecto debitis in. Ad.",
+    "views": 100,
+    "likes": 50
+  }, 
+  {
+    "id": 4,
+    "name": "John Doe",
+    "designation": "UI Developer",
+    "image": "https://i.pinimg.com/736x/29/4c/d9/294cd9e15f0d1c0711bc6526e8c44dc8--face-profile-face-reference.jpg",
+    "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem dicta porro aliquam suscipit nisi aperiam error temporibus id quia. Modi, ad amet. Quas neque molestias architecto debitis in. Ad.",
+    "views": 100,
+    "likes": 50
+  }, 
+  {
+    "id": 5,
+    "name": "John Doe",
+    "designation": "UI Developer",
+    "image": "https://i.pinimg.com/736x/29/4c/d9/294cd9e15f0d1c0711bc6526e8c44dc8--face-profile-face-reference.jpg",
+    "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi exercitationem dicta porro aliquam suscipit nisi aperiam error temporibus id quia. Modi, ad amet. Quas neque molestias architecto debitis in. Ad.",
+    "views": 100,
+    "likes": 50
+  }
+]

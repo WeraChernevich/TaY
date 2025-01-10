@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="./js/app.js" defer></script>
+    <title>TaY</title>
+</head>
+
+<body>
+    <header class="menu-container">
+        <div class="logo">
+            <a href="!#">TaY</a>
+        </div>
+        <button class="add-author-button">Стать автором</button>
+        <div class="hamburger-menu hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <div class="menu-overlay">
+        <ul class="nav">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Авторы</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </div>
+
+   <main>
+    <div class="overlay" id="overlay">
+        <div class="form-container">
+            <button class="close-button">&times;</button>
+            <form class="add-author-form" id="addAuthorForm">
+                <h2>Добавить автора</h2>
+                <div class="form-group">
+                    <label for="name">Имя автора</label>
+                    <input type="text" id="name" name="name" placeholder="Введите имя автора" required>
+                </div>
+                <div class="form-group">
+                    <label for="designation">Направление</label>
+                    <input type="text" id="designation" name="designation" placeholder="Введите направление автора"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Фото</label>
+                    <input type="file" id="image" name="image" accept="image/*" required />
+                </div>
+                <div class="form-group">
+                    <label for="history">История</label>
+                    <textarea id="history" name="history" placeholder="Введите историю автора" required
+                        rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Добавить автора</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+   </main>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</body>
+
+</html>
