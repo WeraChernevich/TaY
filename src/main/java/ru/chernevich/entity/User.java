@@ -29,9 +29,9 @@ public class User {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "sessionId")
+    @Column(name = "session_id", nullable = false)
     private String sessionId;
 
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<History> histories;
 }

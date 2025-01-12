@@ -130,18 +130,12 @@ legend {
 
 html,
 body {
-    /* width: 100%;
-    height: 100vh; */
     overflow: visible;
 
 
 }
 
 body {
-    /* position: relative;
-    margin: 0;
-    padding: 0; */
-    /* pointer-events: none; */
     font-family: var(--fontFamily);
     font-size: 71.42%;
     background-color: var(--background-c);
@@ -155,17 +149,12 @@ body {
 header {
     max-width: 100%;
     padding: 15px;
-}
-
-
-.menu-container {
     background-color: var(--background-c);
     /* padding: 15px 15px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* max-width: 100%; */
-
 }
 
 
@@ -273,6 +262,7 @@ hamburger button
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
 }
 
 .menu-overlay.open {

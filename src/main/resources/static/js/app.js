@@ -1,12 +1,12 @@
 $(document).ready(function () {
+    const API_BASE_URL = 'http://localhost:8083/api';
     const $swiperWrapper = $(".swiper-wrapper");
     const $addAuthorForm = $("#addAuthorForm");
     const $menuAddAuthor = $('.hamburger-menu');
     const $overlay = $('#overlay');
-    const $menuOverlay = $('.menu-overlay');
+    const $menuOverlay = $('#menuOverlay');
     const $addAuthorButton = $('.add-author-button');
     const $closeButton = $('.close-button');
-
     let swiper;
     function initSwiper() {
         swiper = new Swiper(".swiper", {
@@ -23,59 +23,93 @@ $(document).ready(function () {
             },
         });
     }
-
-    $addAuthorButton.on('click', function () {
+    $addAuthorButton.on('click', function() {
         console.log('Button "Стать автором" clicked');
         $overlay.show();
     });
-
     $('.hamburger-menu').on('click', function(){
         if ($menuOverlay.hasClass('open')) {
             $menuOverlay.removeClass('open');
-              $menuOverlay.css('display', 'none');
+            $menuOverlay.css('display', 'none');
         } else {
-           $menuOverlay.css('display', 'flex');
+            $menuOverlay.css('display', 'flex');
             $menuOverlay.addClass('open');
         }
     })
-
-    $closeButton.on('click', function () {
+    $closeButton.on('click', function(){
         $overlay.hide();
     })
+    // $addAuthorForm.on('submit', function(e){
+    //     e.preventDefault();
+    //     const fileInput = document.getElementById('image');
+    //     const file = fileInput.files[0];
 
-    $addAuthorForm.on('submit', function (e) {
-        e.preventDefault();
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onload = function (e) {
+    //             const base64Image = e.target.result.split(',')[1];
+    //             const formData = {
+    //                 name:  $('input[name="name"]').val(),
+    //                 profession:   $('input[name="designation"]').val(),
+    //                 shortStory: $('textarea[name="history"]').val(),
+    //                 image: base64Image,
+    //                  sessionId: sessionId,
+    //             };
+    //             $.ajax({
+    //                 url: `${API_BASE_URL}/users`,
+    //                 type: 'POST',
+    //                 JSON.stringify(formData),
+    //                 contentType: "application/json; charset=utf-8",
+    //                 success: function(){
+    //                     loadData();
+    //                     $overlay.hide();
+    //                    $addAuthorForm.find('input').val('');
+    //                    $addAuthorForm.find('textarea').val('');
+    //                   fileInput.value = '';
+    //                 },
+    //                 error: function(error) {
+    //                     console.error('Error add author:', error)
+    //                 }
+    //             })
+    //         };
+    //         reader.readAsDataURL(file);
 
-        const formData = {
-            name: $('input[name="name"]').val(),
-            profession: $('input[name="designation"]').val(),
-            history: $('input[name="history"]').val(),
-        };
-        $.ajax({
-            url: '/api/users',
-            type: 'POST',
-            data: JSON.stringify(formData),
-            contentType: "application/json; charset=utf-8",
-            success: function () {
-                loadData();
-                $overlay.hide();
-                $addAuthorForm.find('input').val('');
-            },
-            error: function (error) {
-                console.error('Error add author:', error)
-            }
-        })
-    })
+
+    //     }else {
+    //         const formData = {
+    //             name:  $('input[name="name"]').val(),
+    //             profession:   $('input[name="designation"]').val(),
+    //             shortStory: $('textarea[name="history"]').val(),
+    //             sessionId: sessionId,
+    //         };
+    //         $.ajax({
+    //             url: `${API_BASE_URL}/users`,
+    //             type: 'POST',
+    //             JSON.stringify(formData),
+    //             contentType: "application/json; charset=utf-8",
+    //             success: function(){
+    //                 loadData();
+    //                 $overlay.hide();
+    //                 $addAuthorForm.find('input').val('');
+    //                 $addAuthorForm.find('textarea').val('');
+    //                 fileInput.value = '';
+    //             },
+    //             error: function(error) {
+    //                 console.error('Error add author:', error)
+    //             }
+    //         })
+    //     }
+    // });
     function loadData() {
         $.ajax({
-            url: '/api/users',
+            url: `${API_BASE_URL}/users`,
             type: 'GET',
             dataType: 'json',
             success: function (data) {
                 $swiperWrapper.empty();
                 if (data.length > 1) {
                     $.each(data, function (index, user) {
-                        loadHistory(user, function (userWithHistory) {
+                        loadHistory(user, function(userWithHistory){
                             const $slide = createSlide(userWithHistory);
                             $swiperWrapper.append($slide);
                         });
@@ -85,9 +119,9 @@ $(document).ready(function () {
                     }
                     initSwiper();
                     swiper.update();
-                } else if (data.length === 1) {
+                } else if(data.length === 1){
                     $.each(data, function (index, user) {
-                        loadHistory(user, function (userWithHistory) {
+                        loadHistory(user, function(userWithHistory){
                             const $slide = createSlide(userWithHistory);
                             $swiperWrapper.append($slide);
                         });
@@ -112,7 +146,7 @@ $(document).ready(function () {
     }
     function loadHistory(user, callback) {
         $.ajax({
-            url: '/api/histories',
+            url: `${API_BASE_URL}/histories`,
             type: 'GET',
             dataType: 'json',
             success: function (histories) {
@@ -127,63 +161,61 @@ $(document).ready(function () {
     }
     function createSlide(user) {
         let historyHtml = '';
-        if (user.histories && user.histories.length > 0) {
+        if(user.histories && user.histories.length > 0){
             user.histories.forEach(history => {
                 historyHtml += `<p>${history.history}</p>`;
             })
         }
         return $(`
-      <div class="swiper-slide">
-        <div class="profile__card" data-user-id="${item.id}">
-          <div class="profile__image">
-              <img src="${item.image}" alt="${item.name}">
-              <div class="profile__image-info">
-                  <div class="profile__view-more">
-                      <span class="profile__image-name">${item.name}</span>
-                      <button class="trigger">
-                          <i class="fa fa-arrow-right"></i>
-                      </button>
-                  </div>
-                  <span class="profile__image-designation">${item.designation}</span>
-              </div>
-          </div>
-          <div class="profile__info">
-              <div class="profile__info-name">${item.name}</div>
-              <div class="profile__info-designation">${item.designation}</div>
-              <div class="profile__info-description">
-                  ${item.text}
-              </div>
-              <hr>
-              <div class="profile__info-counters">
-                  <div class="profile__info-view-counter">
-                      <i class="fa fa-eye"></i>
-                      <span class="profile__info-views-count">${item.views}</span>
-                  </div>
-                  <div class="profile__info-like-counter">
-                      <i class="fa fa-heart"></i>
-                      <span class="profile__info-likes-count">${item.likes}</span>
-                  </div>
-              </div>
-              <button class="back-btn trigger">Back</button>
-          </div>
+            <div class="swiper-slide">
+                <div class="profile__card" data-user-id="${item.id}">
+                <div class="profile__image">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="profile__image-info">
+                        <div class="profile__view-more">
+                            <span class="profile__image-name">${item.name}</span>
+                            <button class="trigger">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <span class="profile__image-designation">${item.designation}</span>
+                    </div>
+                </div>
+                <div class="profile__info">
+                    <div class="profile__info-name">${item.name}</div>
+                    <div class="profile__info-designation">${item.designation}</div>
+                    <div class="profile__info-description">
+                        ${item.text}
+                    </div>
+                    <hr>
+                    <div class="profile__info-counters">
+                        <div class="profile__info-view-counter">
+                            <i class="fa fa-eye"></i>
+                            <span class="profile__info-views-count">${item.views}</span>
+                        </div>
+                        <div class="profile__info-like-counter">
+                            <i class="fa fa-heart"></i>
+                            <span class="profile__info-likes-count">${item.likes}</span>
+                        </div>
+                    </div>
+                    <button class="back-btn trigger">Back</button>
+                </div>
+            </div>
         </div>
-      </div>
-     `);
+       `);
     }
     loadData();
+
     $(".profile__card")
         .toArray()
         .forEach(function (card) {
-            $(card)
-                .find(".trigger")
-                .on("click", function () {
-                    $(card).toggleClass("active");
-                });
+        $(card)
+            .find(".trigger")
+            .on("click", function () {
+            $(card).toggleClass("active");
         });
+    });
     $('.hamburger').click(function () {
         $(this).toggleClass('open');
     });
 });
-
-
-
