@@ -92,5 +92,5 @@ TellAboutYourself/ ├── src/
 
 ## Авторы
 
-[Cherwa] ([Cherwa](https://github.com/WeraChernevich))
+[Cherwa]([Cherwa](https://github.com/WeraChernevich))
 
